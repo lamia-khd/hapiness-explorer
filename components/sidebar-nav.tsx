@@ -47,7 +47,7 @@ export function SidebarNav({ className, ...props }: SidebarNavProps) {
             asChild
           >
             <Link href={item.href}>
-              <Icon className="mr-2 h-4 w-4" />
+              <Icon className="mr-2 h-4 w-4 text-primary" />
               {item.title}
             </Link>
           </Button>

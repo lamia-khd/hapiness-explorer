@@ -36,7 +36,7 @@ export function AppLayout({ children }: AppLayoutProps) {
         <div className="container flex h-14 items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <Globe className="h-6 w-6" />
+              <Globe className="h-6 w-6 text-primary" />
               <span className="font-bold">World Happiness Explorer</span>
             </Link>
           </div>

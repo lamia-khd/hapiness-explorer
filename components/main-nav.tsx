@@ -11,7 +11,7 @@ export function MainNav() {
   return (
     <div className="mr-4 flex">
       <Link href="/" className="mr-6 flex items-center space-x-2">
-        <Globe className="h-6 w-6" />
+        <Globe className="h-6 w-6 text-primary" />
         <span className="hidden font-bold sm:inline-block">World Happiness Explorer</span>
       </Link>
       {!isHomePage && (
