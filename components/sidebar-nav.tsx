@@ -26,11 +26,6 @@ export function SidebarNav({ className, ...props }: SidebarNavProps) {
       icon: PieChart,
     },
     {
-      title: "Map",
-      href: "/map",
-      icon: Globe,
-    },
-    {
       title: "Predict",
       href: "/predict",
       icon: LineChart,

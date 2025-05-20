@@ -64,7 +64,31 @@ const happinessData = [
     corruption: 0.298,
     region: "Europe",
   },
-  // More data...
+  // Synthetic data augmentation
+  ...[...Array(35)].map((_, i) => {
+    // Generate plausible values
+    const regions = ["Europe", "Asia", "Africa", "North America", "South America", "Oceania"];
+    const region = regions[Math.floor(Math.random() * regions.length)];
+    const gdp = +(Math.random() * 1.5 + 0.5).toFixed(3); // 0.5 - 2.0
+    const social = +(Math.random() * 1.2 + 0.5).toFixed(3); // 0.5 - 1.7
+    const health = +(Math.random() * 0.8 + 0.5).toFixed(3); // 0.5 - 1.3
+    const freedom = +(Math.random() * 0.5 + 0.3).toFixed(3); // 0.3 - 0.8
+    const generosity = +(Math.random() * 0.3 + 0.1).toFixed(3); // 0.1 - 0.4
+    const corruption = +(Math.random() * 0.4).toFixed(3); // 0.0 - 0.4
+    // Score is a weighted sum + noise
+    const score = +(gdp * 1.2 + social * 2.0 + health * 1.1 + freedom * 1.0 + generosity * 0.5 - corruption * 1.2 + (Math.random() - 0.5) * 0.5 + 2.5).toFixed(3);
+    return {
+      country: `Country ${i + 6}`,
+      score,
+      gdp,
+      social,
+      health,
+      freedom,
+      generosity,
+      corruption,
+      region,
+    };
+  }),
 ]
 
 // First, let's update the regional data to include more metrics for comparison
@@ -148,8 +172,8 @@ export default function DashboardPage() {
       {
         label: "Countries",
         data: filteredData.map((item) => ({
-          x: item[xAxis],
-          y: item[yAxis],
+          x: (item as any)[xAxis],
+          y: (item as any)[yAxis],
           country: item.country,
         })),
         backgroundColor: "rgba(75, 192, 192, 0.6)",
@@ -286,23 +310,6 @@ export default function DashboardPage() {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="grid gap-1">
-                <label htmlFor="region" className="text-xs font-medium">
-                  Region
-                </label>
-                <Select value={region} onValueChange={setRegion}>
-                  <SelectTrigger id="region" className="h-7 text-xs w-[120px]">
-                    <SelectValue placeholder="Select region" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Regions</SelectItem>
-                    <SelectItem value="Europe">Europe</SelectItem>
-                    <SelectItem value="North America">North America</SelectItem>
-                    <SelectItem value="Asia">Asia</SelectItem>
-                    <SelectItem value="Oceania">Oceania</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
             </div>
           </CardHeader>
           <CardContent className="h-[250px]">
@@ -312,7 +319,7 @@ export default function DashboardPage() {
                 plugins: {
                   tooltip: {
                     callbacks: {
-                      label: (context) => {
+                      label: (context: any) => {
                         const point = context.raw
                         return `${point.country}: (${point.x.toFixed(2)}, ${point.y.toFixed(2)})`
                       },
@@ -422,7 +429,7 @@ export default function DashboardPage() {
                   },
                   tooltip: {
                     callbacks: {
-                      label: (context) => {
+                      label: (context: any) => {
                         const label = context.dataset.label || ""
                         const value = context.raw || 0
                         return `${label}: ${value.toFixed(2)}`
@@ -540,7 +547,7 @@ export default function DashboardPage() {
                   },
                   tooltip: {
                     callbacks: {
-                      label: (context) => {
+                      label: (context: any) => {
                         const label = context.label || ""
                         const value = context.raw || 0
                         return `${label}: ${value.toFixed(2)}`

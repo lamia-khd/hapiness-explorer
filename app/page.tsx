@@ -106,24 +106,6 @@ export default function Home() {
             <Card className="transition-all duration-300 hover:shadow-lg">
               <CardHeader>
                 <Globe className="h-10 w-10 text-primary" />
-                <CardTitle>World Map</CardTitle>
-                <CardDescription>Explore happiness scores across the globe</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>View a global map visualization of happiness scores with interactive country details.</p>
-              </CardContent>
-              <CardFooter>
-                <Button asChild variant="ghost" className="w-full group">
-                  <Link href="/map" className="flex items-center justify-center">
-                    View Map
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card className="transition-all duration-300 hover:shadow-lg">
-              <CardHeader>
-                <Globe className="h-10 w-10 text-primary" />
                 <CardTitle>ML Predictions</CardTitle>
                 <CardDescription>Make predictions based on your own input values</CardDescription>
               </CardHeader>

@@ -44,9 +44,6 @@ export function AppLayout({ children }: AppLayoutProps) {
 
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <Button asChild>
-              <Link href={isHomePage ? "/predict" : "/predict"}>Try Prediction</Link>
-            </Button>
           </div>
         </div>
       </header>

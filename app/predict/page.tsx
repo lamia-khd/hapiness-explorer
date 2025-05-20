@@ -37,10 +37,10 @@ export default function PredictPage() {
           (gdp * 0.28 + social * 0.26 + health * 0.19 + freedom * 0.13 + generosity * 0.08 + corruption * 0.06) * 3.5 +
           3.5 // Scale to typical range
         conf = 0.85
-      } else if (targetVariable === "freedom") {
-        // Simple model for freedom prediction
-        result = (gdp * 0.15 + social * 0.25 + health * 0.1 + generosity * 0.1 + corruption * 0.4) * 0.6
-        conf = 0.72
+      } else if (targetVariable === "corruption") {
+        // Simple model for corruption prediction
+        result = (gdp * 0.1 + social * 0.2 + health * 0.1 + freedom * 0.1 + generosity * 0.1) * 0.7
+        conf = 0.75
       } else if (targetVariable === "health") {
         // Simple model for health prediction
         result = (gdp * 0.4 + social * 0.3 + freedom * 0.1 + generosity * 0.05 + corruption * 0.15) * 1.1
@@ -142,44 +142,69 @@ export default function PredictPage() {
                 />
                 <p className="text-xs text-muted-foreground">Range: 0.0 - 2.0 (normalized)</p>
               </motion.div>
-              <motion.div
-                className="space-y-2"
-                whileHover={{ scale: 1.01 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="health">Healthy Life Expectancy</Label>
-                  <span className="text-sm text-muted-foreground">{health.toFixed(2)}</span>
-                </div>
-                <Slider
-                  id="health"
-                  min={0}
-                  max={1.5}
-                  step={0.01}
-                  value={[health]}
-                  onValueChange={(value) => setHealth(value[0])}
-                />
-                <p className="text-xs text-muted-foreground">Range: 0.0 - 1.5 (normalized)</p>
-              </motion.div>
-              <motion.div
-                className="space-y-2"
-                whileHover={{ scale: 1.01 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="freedom">Freedom</Label>
-                  <span className="text-sm text-muted-foreground">{freedom.toFixed(2)}</span>
-                </div>
-                <Slider
-                  id="freedom"
-                  min={0}
-                  max={1}
-                  step={0.01}
-                  value={[freedom]}
-                  onValueChange={(value) => setFreedom(value[0])}
-                />
-                <p className="text-xs text-muted-foreground">Range: 0.0 - 1.0 (normalized)</p>
-              </motion.div>
+              {targetVariable !== "health" && (
+                <motion.div
+                  className="space-y-2"
+                  whileHover={{ scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="health">Healthy Life Expectancy</Label>
+                    <span className="text-sm text-muted-foreground">{health.toFixed(2)}</span>
+                  </div>
+                  <Slider
+                    id="health"
+                    min={0}
+                    max={1.5}
+                    step={0.01}
+                    value={[health]}
+                    onValueChange={(value) => setHealth(value[0])}
+                  />
+                  <p className="text-xs text-muted-foreground">Range: 0.0 - 1.5 (normalized)</p>
+                </motion.div>
+              )}
+              {targetVariable !== "corruption" && (
+                <motion.div
+                  className="space-y-2"
+                  whileHover={{ scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="corruption">Low Corruption</Label>
+                    <span className="text-sm text-muted-foreground">{corruption.toFixed(2)}</span>
+                  </div>
+                  <Slider
+                    id="corruption"
+                    min={0}
+                    max={0.8}
+                    step={0.01}
+                    value={[corruption]}
+                    onValueChange={(value) => setCorruption(value[0])}
+                  />
+                  <p className="text-xs text-muted-foreground">Range: 0.0 - 0.8 (normalized)</p>
+                </motion.div>
+              )}
+              {targetVariable !== "freedom" && (
+                <motion.div
+                  className="space-y-2"
+                  whileHover={{ scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="freedom">Freedom</Label>
+                    <span className="text-sm text-muted-foreground">{freedom.toFixed(2)}</span>
+                  </div>
+                  <Slider
+                    id="freedom"
+                    min={0}
+                    max={1}
+                    step={0.01}
+                    value={[freedom]}
+                    onValueChange={(value) => setFreedom(value[0])}
+                  />
+                  <p className="text-xs text-muted-foreground">Range: 0.0 - 1.0 (normalized)</p>
+                </motion.div>
+              )}
               <motion.div
                 className="space-y-2"
                 whileHover={{ scale: 1.01 }}
@@ -199,25 +224,6 @@ export default function PredictPage() {
                 />
                 <p className="text-xs text-muted-foreground">Range: 0.0 - 0.8 (normalized)</p>
               </motion.div>
-              <motion.div
-                className="space-y-2"
-                whileHover={{ scale: 1.01 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="corruption">Low Corruption</Label>
-                  <span className="text-sm text-muted-foreground">{corruption.toFixed(2)}</span>
-                </div>
-                <Slider
-                  id="corruption"
-                  min={0}
-                  max={0.8}
-                  step={0.01}
-                  value={[corruption]}
-                  onValueChange={(value) => setCorruption(value[0])}
-                />
-                <p className="text-xs text-muted-foreground">Range: 0.0 - 0.8 (normalized)</p>
-              </motion.div>
               <div className="space-y-2">
                 <Label htmlFor="target">Target Variable to Predict</Label>
                 <Select value={targetVariable} onValueChange={setTargetVariable}>
@@ -226,7 +232,7 @@ export default function PredictPage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="happiness">Happiness Score</SelectItem>
-                    <SelectItem value="freedom">Freedom</SelectItem>
+                    <SelectItem value="corruption">Low Corruption</SelectItem>
                     <SelectItem value="health">Healthy Life Expectancy</SelectItem>
                   </SelectContent>
                 </Select>
@@ -328,8 +334,8 @@ export default function PredictPage() {
                         Predicted{" "}
                         {targetVariable === "happiness"
                           ? "Happiness Score"
-                          : targetVariable === "freedom"
-                            ? "Freedom Score"
+                          : targetVariable === "corruption"
+                            ? "Low Corruption Score"
                             : "Healthy Life Expectancy Score"}
                       </p>
                     </motion.div>
@@ -367,10 +373,9 @@ export default function PredictPage() {
                                 ? " Countries with similar scores include many middle-income nations."
                                 : " Countries with similar scores include many developing nations."}
                         </p>
-                      ) : targetVariable === "freedom" ? (
+                      ) : targetVariable === "corruption" ? (
                         <p>
-                          This prediction suggests a {freedom < 0.3 ? "low" : freedom < 0.5 ? "moderate" : "high"} level
-                          of freedom. Freedom to make life choices is strongly correlated with overall happiness.
+                          This prediction suggests a {corruption < 0.2 ? "high" : corruption < 0.4 ? "moderate" : "low"} level of corruption. Lower corruption is associated with higher happiness and better quality of life.
                         </p>
                       ) : (
                         <p>
