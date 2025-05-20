@@ -57,7 +57,7 @@ export default function OverviewPage() {
               <Card className="transition-all duration-300 hover:shadow-md">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Countries</CardTitle>
-                  <Globe className="h-4 w-4 text-muted-foreground" />
+                  <Globe className="h-4 w-4 text-primary" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">
@@ -69,7 +69,7 @@ export default function OverviewPage() {
               <Card className="transition-all duration-300 hover:shadow-md">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Average Score</CardTitle>
-                  <BarChart3 className="h-4 w-4 text-muted-foreground" />
+                  <BarChart3 className="h-4 w-4 text-primary" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">
@@ -81,7 +81,7 @@ export default function OverviewPage() {
               <Card className="transition-all duration-300 hover:shadow-md">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Highest Score</CardTitle>
-                  <LineChart className="h-4 w-4 text-muted-foreground" />
+                  <LineChart className="h-4 w-4 text-primary" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">
@@ -93,7 +93,7 @@ export default function OverviewPage() {
               <Card className="transition-all duration-300 hover:shadow-md">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Standard Deviation</CardTitle>
-                  <BarChart3 className="h-4 w-4 text-muted-foreground" />
+                  <BarChart3 className="h-4 w-4 text-primary" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">
@@ -168,11 +168,17 @@ export default function OverviewPage() {
                               display: true,
                               text: "Relative Importance (%)",
                             },
+                            grid: {
+                              color: "rgba(200, 200, 200, 0.1)",
+                            },
                           },
                           y: {
                             title: {
                               display: true,
                               text: "Feature",
+                            },
+                            grid: {
+                              color: "rgba(200, 200, 200, 0.1)",
                             },
                           },
                         },
@@ -279,12 +285,18 @@ export default function OverviewPage() {
                               display: true,
                               text: "Happiness Score Range",
                             },
+                            grid: {
+                              color: "rgba(200, 200, 200, 0.1)",
+                            },
                           },
                           y: {
                             beginAtZero: true,
                             title: {
                               display: true,
                               text: "Number of Countries",
+                            },
+                            grid: {
+                              color: "rgba(200, 200, 200, 0.1)",
                             },
                           },
                         },
@@ -338,12 +350,18 @@ export default function OverviewPage() {
                               display: true,
                               text: "GDP per Capita (normalized)",
                             },
+                            grid: {
+                              color: "rgba(200, 200, 200, 0.1)",
+                            },
                           },
                           y: {
                             beginAtZero: true,
                             title: {
                               display: true,
                               text: "Number of Countries",
+                            },
+                            grid: {
+                              color: "rgba(200, 200, 200, 0.1)",
                             },
                           },
                         },

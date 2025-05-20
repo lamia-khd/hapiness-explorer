@@ -347,6 +347,9 @@ export default function DashboardPage() {
                         size: 9,
                       },
                     },
+                    grid: {
+                      color: "rgba(200, 200, 200, 0.1)",
+                    },
                   },
                   y: {
                     title: {
@@ -369,6 +372,9 @@ export default function DashboardPage() {
                       font: {
                         size: 9,
                       },
+                    },
+                    grid: {
+                      color: "rgba(200, 200, 200, 0.1)",
                     },
                   },
                 },
@@ -439,6 +445,9 @@ export default function DashboardPage() {
                         size: 9,
                       },
                     },
+                    grid: {
+                      color: "rgba(200, 200, 200, 0.1)",
+                    },
                   },
                   x: {
                     ticks: {
@@ -447,6 +456,9 @@ export default function DashboardPage() {
                       },
                       maxRotation: 45,
                       minRotation: 45,
+                    },
+                    grid: {
+                      color: "rgba(200, 200, 200, 0.1)",
                     },
                   },
                 },
@@ -474,11 +486,18 @@ export default function DashboardPage() {
                       font: {
                         size: 8,
                       },
+                      backdropColor: "transparent",
                     },
                     pointLabels: {
                       font: {
                         size: 9,
                       },
+                    },
+                    grid: {
+                      color: "rgba(200, 200, 200, 0.1)",
+                    },
+                    angleLines: {
+                      color: "rgba(200, 200, 200, 0.1)",
                     },
                   },
                 },
@@ -582,6 +601,9 @@ export default function DashboardPage() {
                         size: 9,
                       },
                     },
+                    grid: {
+                      color: "rgba(200, 200, 200, 0.1)",
+                    },
                   },
                   x: {
                     title: {
@@ -595,6 +617,9 @@ export default function DashboardPage() {
                       font: {
                         size: 9,
                       },
+                    },
+                    grid: {
+                      color: "rgba(200, 200, 200, 0.1)",
                     },
                   },
                 },
@@ -637,7 +662,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        {/* New Regional Comparison Chart (as shown in the image) */}
+        {/* Regional Comparison Chart (as shown in the image) */}
         <Card className="transition-all duration-300 hover:shadow-md">
           <CardHeader className="pb-2">
             <CardTitle className="text-lg">Regional Comparison</CardTitle>
@@ -668,12 +693,18 @@ export default function DashboardPage() {
                         size: 9,
                       },
                     },
+                    grid: {
+                      color: "rgba(200, 200, 200, 0.1)",
+                    },
                   },
                   x: {
                     ticks: {
                       font: {
                         size: 9,
                       },
+                    },
+                    grid: {
+                      color: "rgba(200, 200, 200, 0.1)",
                     },
                   },
                 },

@@ -20,7 +20,7 @@ export default function Home() {
           }}
         >
           {/* Overlay to ensure text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-background/90 to-background/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-background/90 to-background/30 dark:from-background/95 dark:to-background/70"></div>
 
           <div className="container relative z-10">
             <div className="max-w-[50rem]">
@@ -106,6 +106,24 @@ export default function Home() {
             <Card className="transition-all duration-300 hover:shadow-lg">
               <CardHeader>
                 <Globe className="h-10 w-10 text-primary" />
+                <CardTitle>World Map</CardTitle>
+                <CardDescription>Explore happiness scores across the globe</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>View a global map visualization of happiness scores with interactive country details.</p>
+              </CardContent>
+              <CardFooter>
+                <Button asChild variant="ghost" className="w-full group">
+                  <Link href="/map" className="flex items-center justify-center">
+                    View Map
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+            <Card className="transition-all duration-300 hover:shadow-lg">
+              <CardHeader>
+                <Globe className="h-10 w-10 text-primary" />
                 <CardTitle>ML Predictions</CardTitle>
                 <CardDescription>Make predictions based on your own input values</CardDescription>
               </CardHeader>
@@ -164,7 +182,7 @@ export default function Home() {
                   <img
                     src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop"
                     alt="Happy friends enjoying time together"
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full dark:brightness-90"
                   />
                 </div>
               </FadeIn>

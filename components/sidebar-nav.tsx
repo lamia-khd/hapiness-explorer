@@ -4,7 +4,7 @@ import type React from "react"
 
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { BarChart3, LineChart, PieChart } from "lucide-react"
+import { BarChart3, LineChart, PieChart, Globe } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -24,6 +24,11 @@ export function SidebarNav({ className, ...props }: SidebarNavProps) {
       title: "Dashboard",
       href: "/dashboard",
       icon: PieChart,
+    },
+    {
+      title: "Map",
+      href: "/map",
+      icon: Globe,
     },
     {
       title: "Predict",

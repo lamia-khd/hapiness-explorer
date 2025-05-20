@@ -292,6 +292,13 @@ export default function PredictPage() {
                         max: 10,
                         ticks: {
                           stepSize: 2,
+                          backdropColor: "transparent",
+                        },
+                        grid: {
+                          color: "rgba(200, 200, 200, 0.1)",
+                        },
+                        angleLines: {
+                          color: "rgba(200, 200, 200, 0.1)",
                         },
                       },
                     },

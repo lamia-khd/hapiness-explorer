@@ -9,6 +9,7 @@ import { Globe } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { SidebarNav } from "@/components/sidebar-nav"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 interface AppLayoutProps {
   children: React.ReactNode
@@ -41,9 +42,12 @@ export function AppLayout({ children }: AppLayoutProps) {
             </Link>
           </div>
 
-          <Button asChild>
-            <Link href={isHomePage ? "/predict" : "/predict"}>Try Prediction</Link>
-          </Button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button asChild>
+              <Link href={isHomePage ? "/predict" : "/predict"}>Try Prediction</Link>
+            </Button>
+          </div>
         </div>
       </header>
 
