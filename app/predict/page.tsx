@@ -23,34 +23,51 @@ export default function PredictPage() {
   const [isCalculating, setIsCalculating] = useState(false)
 
   // Simple ML model simulation
-  const makePrediction = () => {
+  const makePrediction = async () => {
     setIsCalculating(true)
-
-    // Simulate calculation time
-    setTimeout(() => {
-      let result = 0
-      let conf = 0
-
-      if (targetVariable === "happiness") {
-        // Simple weighted sum for happiness score prediction
-        result =
-          (gdp * 0.28 + social * 0.26 + health * 0.19 + freedom * 0.13 + generosity * 0.08 + corruption * 0.06) * 3.5 +
-          3.5 // Scale to typical range
-        conf = 0.85
-      } else if (targetVariable === "corruption") {
-        // Simple model for corruption prediction
-        result = (gdp * 0.1 + social * 0.2 + health * 0.1 + freedom * 0.1 + generosity * 0.1) * 0.7
-        conf = 0.75
-      } else if (targetVariable === "health") {
-        // Simple model for health prediction
-        result = (gdp * 0.4 + social * 0.3 + freedom * 0.1 + generosity * 0.05 + corruption * 0.15) * 1.1
-        conf = 0.78
+    setPrediction(null)
+    setConfidence(null)
+    if (targetVariable === "happiness") {
+      try {
+        const response = await fetch("http://localhost:8000/predict", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            target: targetVariable,
+            gdp_per_capita: gdp,
+            social_support: social,
+            healthy_life_expectancy: health,
+            freedom_to_make_life_choices: freedom,
+            generosity: generosity,
+            perceptions_of_corruption: corruption,
+          }),
+        })
+        const data = await response.json()
+        if (data.predicted_score !== undefined) {
+          setPrediction(Number.parseFloat(data.predicted_score.toFixed(2)))
+          setConfidence(90)
+        } else {
+          setPrediction(null)
+          setConfidence(null)
+          alert(data.error || "Prediction failed")
+        }
+      } catch (err) {
+        setPrediction(null)
+        setConfidence(null)
+        alert("API call failed")
       }
-
+    } else if (targetVariable === "corruption") {
+      // Local prediction logic for corruption
+      const result = (gdp * 0.1 + social * 0.2 + health * 0.1 + freedom * 0.1 + generosity * 0.1) * 0.7
       setPrediction(Number.parseFloat(result.toFixed(2)))
-      setConfidence(Number.parseFloat((conf * 100).toFixed(1)))
-      setIsCalculating(false)
-    }, 800)
+      setConfidence(75)
+    } else if (targetVariable === "health") {
+      // Local prediction logic for health
+      const result = (gdp * 0.4 + social * 0.3 + freedom * 0.1 + generosity * 0.05 + corruption * 0.15) * 1.1
+      setPrediction(Number.parseFloat(result.toFixed(2)))
+      setConfidence(78)
+    }
+    setIsCalculating(false)
   }
 
   // Reset form
