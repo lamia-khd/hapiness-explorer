@@ -1,6 +1,6 @@
 ## 📦 Getting Started
 
-You can easily access to the website via the link : 
+You can easily access to the website via the link: 
 👉 [View Live Demo](https://hapiness-explorer.vercel.app/)
 
 alternatively follow these instructions to get the frontend running on your local machine (The backend is hosted so we don't need to run it):
